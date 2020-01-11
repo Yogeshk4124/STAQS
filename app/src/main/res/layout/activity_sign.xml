@@ -7,51 +7,59 @@
     tools:context=".SignUpActivity">
     <include
         android:id="@+id/toolbar"
-        android:layout="@layout/bar_layout"/>
+        layout="@layout/bar_layout"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
         >
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create a new account"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            />
+            android:text="@string/ca"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Username"
+            android:hint="@string/uname"
             android:inputType="textPersonName"
-            android:met_floatingLabel="normal"
             app:met_floatingLabel="highlight" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/Email"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             app:met_floatingLabel="highlight" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/Password"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Password"
+            android:hint="@string/psd"
             android:inputType="textPassword"
             app:met_floatingLabel="highlight" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/Sup" />
 
     </LinearLayout>
 </RelativeLayout>
