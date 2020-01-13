@@ -3,6 +3,8 @@
     <string name="uname">Username</string>
     <string name="psd">Password</string>
     <string name="email">Email</string>
-    <string name="Sup">Sign Up</string>
+    <string name="Sup">Create a new account</string>
+    <string name="login">Login</string>
     <string name="ca">Create a new account</string>
+    <string name="Sign_In">Sign in</string>
 </resources>

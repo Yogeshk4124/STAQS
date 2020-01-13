@@ -6,14 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 public class MainActivity extends AppCompatActivity {
-    Button Button1;
+    TextView create_account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button1=findViewById(R.id.button1);
-        Button1.setOnClickListener(new View.OnClickListener(){
+        create_account=findViewById(R.id.create_account);
+        create_account.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,SignUpActivity.class);
