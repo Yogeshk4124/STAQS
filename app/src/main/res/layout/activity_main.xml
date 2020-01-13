@@ -4,26 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignTop="@+id/t1"
     android:gravity="center"
     tools:context=".MainActivity"
     android:id="@+id/rl"
     android:background="@color/colorPrimaryDark">
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" -->
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="306dp"
+        android:layout_height="163dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-50dp"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/t1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginBottom="150dp"
         android:fontFamily="@font/acme"
         android:text="@string/Sign_In"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_margin="150dp"
         android:textSize="40sp" />
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/username"
+        android:layout_width="389dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/t1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:hint="@string/uname"
+        android:inputType="textPersonName"
+        app:met_floatingLabel="normal"
+        app:met_floatingLabelText="@string/uname"
+        app:met_textColor="@color/darkgrey"
+        app:met_baseColor="@color/grey"
+        app:met_textColorHint="@color/darkgrey" />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/password"
+        android:layout_width="389dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:hint="@string/psd"
+        android:inputType="textPassword"
+        app:met_floatingLabel="normal"
+        app:met_floatingLabelText="@string/psd"
+        app:met_textColor="@color/darkgrey"
+        app:met_baseColor="@color/grey"
+        app:met_textColorHint="@color/darkgrey"
+        />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/password"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/login" />
 
     <TextView
         android:id="@+id/create_account"
@@ -31,34 +79,11 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button2"
         android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:text="@string/Sup"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/darkgrey"
+        />
 
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/t1"
-        android:layout_marginTop="100dp"
-        android:background="#FFFFFF"
-        android:hint="@string/uname"
-        android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        app:met_floatingLabel="highlight" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:text="@string/login" />
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="125dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp"
-        app:srcCompat="@drawable/logo" />
 </RelativeLayout>

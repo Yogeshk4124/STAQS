@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">Chat App</string>
+    <string name="app_name">STAQS</string>
     <string name="uname">Username</string>
     <string name="psd">Password</string>
     <string name="email">Email</string>
-    <string name="Sup">Create a new account</string>
+    <string name="Sup">Create a new account?</string>
     <string name="login">Login</string>
     <string name="ca">Create a new account</string>
+    <string name="type">Account Type</string>
+    <string name="Student">Student</string>
+    <string name="Teacher">Teacher</string>
     <string name="Sign_In">Sign in</string>
 </resources>

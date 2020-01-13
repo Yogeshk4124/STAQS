@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 
@@ -26,6 +27,7 @@ import java.util.HashMap;
 public class SignUpActivity extends AppCompatActivity {
     MaterialEditText Email,Password,Username;
     Button sign_up;
+    RadioButton R1,R2;
     FirebaseAuth auth;
     DatabaseReference reference;
     @Override
@@ -41,7 +43,8 @@ public class SignUpActivity extends AppCompatActivity {
         Email=findViewById(R.id.email);
         Password=findViewById(R.id.password);
         sign_up=findViewById(R.id.button);
-
+        R1=findViewById(R.id.radioButton);
+        R2=findViewById(R.id.radioButton2);
         auth=FirebaseAuth.getInstance();
         sign_up.setOnClickListener(new View.OnClickListener(){
            public void onClick(View view)
