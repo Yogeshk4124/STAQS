@@ -62,6 +62,7 @@
             android:textColor="@color/grey"/>
 
         <RadioGroup
+            android:id="@+id/rg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -73,23 +74,21 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textColor="@color/grey"
                 android:text="@string/Teacher"
+                android:textColor="@color/grey"
                 android:textSize="18sp" />
 
             <RadioButton
-                android:textColor="@color/grey"
                 android:id="@+id/radioButton2"
                 android:layout_width="17dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="@string/Student"
+                android:textColor="@color/grey"
                 android:textSize="18sp" />
 
         </RadioGroup>
-
-
 
 
         <Button
