@@ -15,14 +15,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     TextView create_account;
     TextView Username,Password;
     Button login;
     FirebaseAuth auth;
+    static String t;
     DatabaseReference reff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +53,33 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
-//                            reff= FirebaseDatabase.getInstance().getReference().getKey().
+                            String SS= auth.getUid();
+                            reff=FirebaseDatabase.getInstance().getReference().child("Users").child(SS);
+
+                            reff.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                               t=dataSnapshot.child("Type").getValue().toString();
+                               if(t.equals("Student")){
                                 Intent intent = new Intent(MainActivity.this,StudentM.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();
+                            }
+                            else
+                            {
+                                Intent intent = new Intent(MainActivity.this,Teacher.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                             }
                         }
                     });
