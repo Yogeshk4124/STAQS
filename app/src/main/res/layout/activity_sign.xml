@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimaryDark"
-            android:text="@string/Sup" />
+            android:text="@string/ca" />
 
     </LinearLayout>
 </RelativeLayout>

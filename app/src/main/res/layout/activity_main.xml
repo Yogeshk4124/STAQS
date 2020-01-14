@@ -7,7 +7,8 @@
     android:gravity="center"
     tools:context=".MainActivity"
     android:id="@+id/rl"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    >
 
     <ImageView
         android:id="@+id/imageView2"
