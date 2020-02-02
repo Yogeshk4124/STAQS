@@ -1,8 +1,5 @@
 package com.example.chatapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -55,21 +55,22 @@ public class MainActivity extends AppCompatActivity {
                             {
                             String SS= auth.getUid();
                             reff=FirebaseDatabase.getInstance().getReference().child("Users").child(SS);
-
                             reff.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                t=dataSnapshot.child("Type").getValue().toString();
+                               String s="com.example.chatapp.message_key";
                                if(t.equals("Student")){
-                                Intent intent = new Intent(MainActivity.this,StudentM.class);
+                                Intent intent = new Intent(MainActivity.this,Home.class);
+                                intent.putExtra(s,"Student");
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();
                             }
-                            else
-                            {
-                                Intent intent = new Intent(MainActivity.this,Teacher.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            else {
+                                Intent intent = new Intent(MainActivity.this,Home.class);
+                                intent.putExtra(s,"Teacher");
+                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();
                             }
@@ -83,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-
-
                 }
             }
         });

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topnav"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentTop="true"
+    android:background="@color/dark_grey"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/bott"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/html_gray" />
+    </com.google.android.material.appbar.AppBarLayout>
+</RelativeLayout>

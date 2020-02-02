@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cl1"
+
+    >
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -45,9 +52,9 @@
         android:inputType="textPersonName"
         app:met_floatingLabel="normal"
         app:met_floatingLabelText="@string/uname"
-        app:met_textColor="@color/darkgrey"
+        app:met_textColor="@color/dark_grey"
         app:met_baseColor="@color/grey"
-        app:met_textColorHint="@color/darkgrey" />
+        app:met_textColorHint="@color/dark_grey" />
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/password"
         android:layout_width="389dp"
@@ -59,9 +66,9 @@
         android:inputType="textPassword"
         app:met_floatingLabel="normal"
         app:met_floatingLabelText="@string/psd"
-        app:met_textColor="@color/darkgrey"
+        app:met_textColor="@color/dark_grey"
         app:met_baseColor="@color/grey"
-        app:met_textColorHint="@color/darkgrey"
+        app:met_textColorHint="@color/dark_grey"
         />
 
     <Button
@@ -79,12 +86,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button2"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:text="@string/Sup"
-        android:textSize="20sp"
-        android:textColor="@color/darkgrey"
-        />
+        android:textColor="@color/dark_grey"
+        android:textSize="20sp" />
 
 </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

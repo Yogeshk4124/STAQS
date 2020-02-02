@@ -9,11 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Teacher"></activity>
-        <activity android:name=".StudentM" />
-        <activity
-            android:name=".ui.login.StudentM"
-            android:label="@string/title_activity_student_m" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +24,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Home"
+            android:label="Home"
+            >
+            <intent-filter>
+                <action android:name="com.example.chatapp.activityhome" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
