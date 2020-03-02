@@ -5,18 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_alignParentBottom="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
             android:id="@+id/botn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/html_gray"
             app:menu="@menu/bottom_menu"
             />
-    </com.google.android.material.appbar.AppBarLayout>
 </RelativeLayout>

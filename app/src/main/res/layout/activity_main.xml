@@ -14,7 +14,7 @@
     android:gravity="center"
     tools:context=".MainActivity"
     android:id="@+id/rl"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     >
 
     <ImageView
@@ -50,11 +50,13 @@
         android:layout_marginTop="100dp"
         android:hint="@string/uname"
         android:inputType="textPersonName"
+        android:text="@string/u"
+        app:met_baseColor="@color/grey"
         app:met_floatingLabel="normal"
         app:met_floatingLabelText="@string/uname"
         app:met_textColor="@color/dark_grey"
-        app:met_baseColor="@color/grey"
         app:met_textColorHint="@color/dark_grey" />
+
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/password"
         android:layout_width="389dp"
@@ -64,12 +66,12 @@
         android:layout_marginTop="100dp"
         android:hint="@string/psd"
         android:inputType="textPassword"
+        android:text="@string/p"
+        app:met_baseColor="@color/grey"
         app:met_floatingLabel="normal"
         app:met_floatingLabelText="@string/psd"
         app:met_textColor="@color/dark_grey"
-        app:met_baseColor="@color/grey"
-        app:met_textColorHint="@color/dark_grey"
-        />
+        app:met_textColorHint="@color/dark_grey" />
 
     <Button
         android:id="@+id/button2"

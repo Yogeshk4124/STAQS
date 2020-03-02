@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.chatapp.Home.Home;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                                t=dataSnapshot.child("Type").getValue().toString();
                                String s="com.example.chatapp.message_key";
                                if(t.equals("Student")){
-                                Intent intent = new Intent(MainActivity.this,Home.class);
+                                Intent intent = new Intent(MainActivity.this, Home.class);
                                 intent.putExtra(s,"Student");
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);

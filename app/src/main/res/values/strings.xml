@@ -20,4 +20,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="home">"HOME"</string>
+    <string name="u">a@g.com</string>
+    <string name="p">123356</string>
+    <string name="search">search</string>
+
 </resources>
