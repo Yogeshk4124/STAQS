@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     FirebaseAuth auth;
     static String t;
+    static String im,email;
     DatabaseReference reff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +61,14 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                t=dataSnapshot.child("Type").getValue().toString();
-                               String s="com.example.chatapp.message_key";
+                               im=dataSnapshot.child("image").getValue().toString();
+                               email=dataSnapshot.child("email").getValue().toString();
+                               String s="Type";
                                if(t.equals("Student")){
                                 Intent intent = new Intent(MainActivity.this, Home.class);
                                 intent.putExtra(s,"Student");
+                                intent.putExtra("image",im);
+                                intent.putExtra("email",email);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();
@@ -71,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                             else {
                                 Intent intent = new Intent(MainActivity.this,Home.class);
                                 intent.putExtra(s,"Teacher");
-                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("image",im);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                                 finish();
                             }

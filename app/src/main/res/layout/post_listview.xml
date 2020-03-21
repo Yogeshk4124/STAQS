@@ -1,40 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    >
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        tools:srcCompat="@drawable/profile" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Teacher"
-        android:textSize="30sp" />
+        android:layout_toRightOf="@+id/imageView7"
+        android:layout_toEndOf="@+id/imageView7"
+        android:textSize="30sp"
+
+        />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="25sp"
+        android:layout_below="@+id/imageView7"
+
+        />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="51dp"
-        android:layout_height="49dp"
-        app:srcCompat="@drawable/chat1" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView10"
+        android:scaleType="fitXY"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/email"
+        android:text="Description"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@id/imageView4"
+        />
 
-    <TextView
-        android:id="@+id/textView7"
+    <View
+        android:id="@+id/divider2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Student"
-        android:textSize="25sp" />
-</LinearLayout>
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/textView8"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        />
+
+</RelativeLayout>

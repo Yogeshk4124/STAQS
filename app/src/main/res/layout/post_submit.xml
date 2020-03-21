@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Home.Home"
+    android:background="@color/colorPrimaryDark"
+    >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/R1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/topnav" />
+        </RelativeLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/title"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/R1"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:hint="@string/title"
+            android:inputType="textPersonName"
+            android:autofillHints="@string/title"
+            app:met_textColor="@color/dark_grey"
+            app:met_textColorHint="@color/dark_grey"
+            android:minLines="1"
+            android:maxLines="1"
+            />
+        <ImageView
+            android:id="@+id/p1"
+            android:layout_width="81dp"
+            android:layout_height="91dp"
+            android:layout_below="@+id/R1"
+            android:layout_marginTop="50dp"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/username"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/R1"
+            android:layout_marginTop="75dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/p1"
+            android:layout_toRightOf="@+id/p1"
+            android:hint="@string/writeacaption"
+            android:inputType="textPersonName"
+            android:autofillHints="@string/writeacaption"
+            app:met_textColor="@color/dark_grey"
+            app:met_textColorHint="@color/dark_grey"
+            android:minLines="1"
+            android:maxLines="3"
+            />
+        <ImageView
+            android:id="@+id/p2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/R1"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/username"
+            android:layout_toRightOf="@+id/username"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:layout_below="@+id/p2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"/>
+
+        <RelativeLayout
+            android:id="@+id/R3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/botnav" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

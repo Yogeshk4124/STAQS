@@ -1,5 +1,6 @@
 package com.example.chatapp.Search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,10 +29,15 @@ public class searchA extends AppCompatActivity {
     Button search;
     EditText t;
     TextView h;
+    String im,email;
     protected void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_search);
         setupBottomNavigationView();
+        Intent intent = getIntent();
+        im=intent.getStringExtra("image");
+        email=intent.getStringExtra("email");
+
         rv=findViewById(R.id.rv1);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -52,7 +58,7 @@ public class searchA extends AppCompatActivity {
     private void setupBottomNavigationView(){
         BottomNavigationViewEx bottomNavigationViewEx=findViewById(R.id.botn);
         BotNavHelper.setup(bottomNavigationViewEx);
-        BotNavHelper.selection(searchA.this,bottomNavigationViewEx);
+        BotNavHelper.selection(searchA.this,bottomNavigationViewEx,im,email);
         Menu menu=bottomNavigationViewEx.getMenu();
         MenuItem MI=menu.getItem(1);
         MI.setChecked(true);

@@ -23,5 +23,14 @@
     <string name="u">a@g.com</string>
     <string name="p">123356</string>
     <string name="search">search</string>
-
+    <string name="writeacaption">Write a Caption...</string>
+    <string name="title">title</string>
+    <string name="AddPost">Add Post</string>
+    <string-array name="department">
+        <item>Department</item>
+        <item>CSE</item>
+        <item>MBA</item>
+        <item>BBA</item>
+        <item>ECE</item>
+    </string-array>
 </resources>

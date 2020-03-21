@@ -28,6 +28,12 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/profilesign" />
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/username"
             android:layout_width="match_parent"
@@ -35,7 +41,11 @@
             android:layout_marginTop="10dp"
             android:hint="@string/uname"
             android:inputType="textPersonName"
-            app:met_floatingLabel="highlight" />
+            app:met_floatingLabel="highlight"
+            app:met_textColorHint="@color/white"
+            app:met_floatingLabelTextColor="@color/white"
+            app:met_baseColor="@color/white"
+            />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/email"
@@ -44,7 +54,11 @@
             android:layout_marginTop="10dp"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            app:met_floatingLabel="highlight" />
+            app:met_floatingLabel="highlight"
+            app:met_textColorHint="@color/white"
+            app:met_floatingLabelTextColor="@color/white"
+            app:met_baseColor="@color/white"
+            />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/password"
@@ -53,45 +67,18 @@
             android:layout_marginTop="10dp"
             android:hint="@string/psd"
             android:inputType="textPassword"
-            app:met_floatingLabel="highlight" />
+            app:met_floatingLabel="highlight"
+            app:met_textColorHint="@color/white"
+            app:met_floatingLabelTextColor="@color/white"
+            app:met_baseColor="@color/white"
+            />
 
-        <TextView
-            android:id="@+id/textView2"
+
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/type"
-            android:textSize="20sp"
-            android:textColor="@color/grey"/>
-
-        <RadioGroup
-            android:id="@+id/rg"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="21dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:text="@string/Teacher"
-                android:textColor="@color/grey"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="17dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:text="@string/Student"
-                android:textColor="@color/grey"
-                android:textSize="18sp" />
-
-        </RadioGroup>
-
+            />
 
         <Button
             android:id="@+id/button"
@@ -99,7 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimaryDark"
-            android:text="@string/ca" />
+            android:text="@string/ca"
+            />
 
     </LinearLayout>
 </RelativeLayout>
