@@ -9,7 +9,7 @@ import com.example.chatapp.Chat.ChatA;
 import com.example.chatapp.Home.Home;
 import com.example.chatapp.R;
 import com.example.chatapp.Post.post;
-import com.example.chatapp.Profile.profileA;
+import com.example.chatapp.Profile.profileS;
 import com.example.chatapp.Search.searchA;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -53,7 +53,7 @@ public class BotNavHelper {
                         context.startActivity(intent4);
                         break;
                     case R.id.profile:
-                        Intent intent5=new Intent(context, profileA.class);
+                        Intent intent5=new Intent(context, profileS.class);
                         intent5.putExtra("image",im);
                         intent5.putExtra("email",email);
                         context.startActivity(intent5);

@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rcornertextield"
             android:ems="10"
+            android:layout_marginLeft="15dp"
             android:fontFamily="sans-serif-condensed-light"
             android:hint="@string/search"
             android:inputType="textPersonName"
@@ -36,7 +37,8 @@
             android:paddingEnd="10dp"
             android:paddingRight="2dp"
             android:paddingBottom="8dp"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            />
 
         <Button
             android:id="@+id/button3"
@@ -68,7 +70,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            />
     </RelativeLayout>
 
     <RelativeLayout

@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Post.post" />
-        <activity android:name=".Profile.profileA" />
+        <activity android:name=".Profile.profileS" />
         <activity android:name=".Search.searchA" />
         <activity android:name=".Chat.ChatA" />
 

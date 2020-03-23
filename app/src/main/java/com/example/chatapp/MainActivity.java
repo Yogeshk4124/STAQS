@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                t=dataSnapshot.child("Type").getValue().toString();
-                               im=dataSnapshot.child("image").getValue().toString();
+                               im=dataSnapshot.child("ImageURL").getValue().toString();
                                email=dataSnapshot.child("email").getValue().toString();
                                String s="Type";
                                if(t.equals("Student")){

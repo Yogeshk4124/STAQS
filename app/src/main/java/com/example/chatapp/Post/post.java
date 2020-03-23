@@ -57,7 +57,7 @@ public class post extends AppCompatActivity {
     TextView h;
     ImageView camera;
     Uri images_uri=null;
-    static String im, email,uid,name,dp,t;
+    static String im, email,uid,name,type,dp;
     EditText title, description;
     FirebaseAuth firebaseAuth;
     DatabaseReference drf,ref1;
@@ -77,7 +77,7 @@ public class post extends AppCompatActivity {
         email=u.getEmail();
         uid=u.getUid();
 
-        Toast.makeText(post.this,"checking for this "+name,Toast.LENGTH_LONG).show();
+
 
         drf=FirebaseDatabase.getInstance().getReference("Users");
         Query q=drf.orderByChild("email").equalTo(email);
@@ -88,6 +88,7 @@ public class post extends AppCompatActivity {
                     name=""+ds.child("username").getValue();
                     email=""+ds.child("email").getValue();
                     dp=""+ds.child("ImageURL").getValue();
+                    type=""+ds.child("Type").getValue();
                 }
             }
 
@@ -125,90 +126,179 @@ public class post extends AppCompatActivity {
     }
         });
     }
-    public void uploaddata(String uri){
+    public void uploaddata(String uri) {
+        Toast.makeText(post.this,"checking for this "+type,Toast.LENGTH_LONG).show();
+        if (type.equals("Teacher")){
+            Toast.makeText(post.this,"Here"+type,Toast.LENGTH_LONG).show();
+            pd.setMessage("Uploading");
+            pd.show();
+            final String timespan=String.valueOf(System.currentTimeMillis());
+            String address="Posts/"+"post_"+timespan;
 
-        pd.setMessage("Uploading");
-        pd.show();
-        final String timespan=String.valueOf(System.currentTimeMillis());
-        String address="Posts/"+"post_"+timespan;
-
-        if(!uri.equals("noImage")){
-            StorageReference ref=FirebaseStorage.getInstance().getReference().child(address);
-            ref.putFile(Uri.parse(uri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> uriTask= taskSnapshot.getStorage().getDownloadUrl();
-                    while(!uriTask.isSuccessful());
-                    String Downloaduri=uriTask.getResult().toString();
+            if(!uri.equals("noImage")){
+                StorageReference ref=FirebaseStorage.getInstance().getReference().child(address);
+                ref.putFile(Uri.parse(uri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> uriTask= taskSnapshot.getStorage().getDownloadUrl();
+                        while(!uriTask.isSuccessful());
+                        String Downloaduri=uriTask.getResult().toString();
 //                    Toast.makeText(post.this,"dassssssssssssssssssssssss",Toast.LENGTH_LONG).show();
-                    if(uriTask.isSuccessful())
-                    {
-                        HashMap<String,String>hm=new HashMap<>();
-                        hm.put("id",uid);
-                        hm.put("username",name);
-                        hm.put("email",email);
-                        hm.put("ImageURL",dp);
-                        hm.put("pId",timespan);
-                        hm.put("pTitle",title.getText().toString());
-                        hm.put("pDescription",description.getText().toString());
-                        hm.put("pImage",Downloaduri);
-                        hm.put("pTime",timespan);
+                        if(uriTask.isSuccessful())
+                        {
+                            HashMap<String,String>hm=new HashMap<>();
+                            hm.put("id",uid);
+                            hm.put("username",name);
+                            hm.put("email",email);
+                            hm.put("ImageURL",dp);
+                            hm.put("pId",timespan);
+                            hm.put("pTitle",title.getText().toString());
+                            hm.put("pDescription",description.getText().toString());
+                            hm.put("pImage",Downloaduri);
+                            hm.put("pTime",timespan);
 
-                        DatabaseReference ref1=FirebaseDatabase.getInstance().getReference("Posts");
+                            DatabaseReference ref1=FirebaseDatabase.getInstance().getReference("Posts");
 
-                        ref1.child(timespan).setValue(hm).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                pd.dismiss();
-                                Toast.makeText(post.this,"Post Published",Toast.LENGTH_LONG).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                pd.dismiss();
-                                Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                            }
-                        });
+                            ref1.child(timespan).setValue(hm).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    pd.dismiss();
+                                    Toast.makeText(post.this,"Post Published",Toast.LENGTH_LONG).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    pd.dismiss();
+                                    Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+
                     }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            else
+            {
+                Toast.makeText(post.this,"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",Toast.LENGTH_LONG).show();
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    pd.dismiss();
-                    Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                }
-            });
+                HashMap<String,String>hm=new HashMap<>();
+                hm.put("id",uid);
+                hm.put("username",name);
+                hm.put("email",email);
+                hm.put("ImageURL",dp);
+                hm.put("pId",timespan);
+                hm.put("pTitle",title.getText().toString());
+                hm.put("pDescription",description.getText().toString());
+                hm.put("pImage","noImage");
+                hm.put("pTime",timespan);
+                Toast.makeText(post.this,"gere2",Toast.LENGTH_LONG).show();
+                ref1=FirebaseDatabase.getInstance().getReference("Posts");
+                ref1.child(timespan).setValue(hm).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        Toast.makeText(post.this,"Post Published",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
         }
-        else
+        else if(type.equals("Student"))
         {
-            Toast.makeText(post.this,"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",Toast.LENGTH_LONG).show();
+            pd.setMessage("Uploading");
+            pd.show();
+            final String timespan=String.valueOf(System.currentTimeMillis());
+            String address="Query/"+"query_"+timespan;
 
-            HashMap<String,String>hm=new HashMap<>();
-            hm.put("id",uid);
-            hm.put("username",name);
-            hm.put("email",email);
-            hm.put("ImageURL",dp);
-            hm.put("pId",timespan);
-            hm.put("pTitle",title.getText().toString());
-            hm.put("pDescription",description.getText().toString());
-            hm.put("pImage","noImage");
-            hm.put("pTime",timespan);
+            if(!uri.equals("noImage")){
+                StorageReference ref=FirebaseStorage.getInstance().getReference().child(address);
+                ref.putFile(Uri.parse(uri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> uriTask= taskSnapshot.getStorage().getDownloadUrl();
+                        while(!uriTask.isSuccessful());
+                        String Downloaduri=uriTask.getResult().toString();
+//                    Toast.makeText(post.this,"dassssssssssssssssssssssss",Toast.LENGTH_LONG).show();
+                        if(uriTask.isSuccessful())
+                        {
+                            HashMap<String,String>hm=new HashMap<>();
+                            hm.put("id",uid);
+                            hm.put("username",name);
+                            hm.put("email",email);
+                            hm.put("ImageURL",dp);
+                            hm.put("qId",timespan);
+                            hm.put("qTitle",title.getText().toString());
+                            hm.put("qDescription",description.getText().toString());
+                            hm.put("qImage",Downloaduri);
+                            hm.put("qTime",timespan);
 
-            ref1=FirebaseDatabase.getInstance().getReference("Posts");
-            ref1.child(timespan).setValue(hm).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    pd.dismiss();
-                    Toast.makeText(post.this,"Post Published",Toast.LENGTH_LONG).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    pd.dismiss();
-                    Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                }
-            });
+                            DatabaseReference ref1=FirebaseDatabase.getInstance().getReference("Query");
+
+                            ref1.child(timespan).setValue(hm).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    pd.dismiss();
+                                    Toast.makeText(post.this,"Query Published",Toast.LENGTH_LONG).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    pd.dismiss();
+                                    Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            else
+            {
+                Toast.makeText(post.this,"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",Toast.LENGTH_LONG).show();
+
+                HashMap<String,String>hm=new HashMap<>();
+                hm.put("id",uid);
+                hm.put("username",name);
+                hm.put("email",email);
+                hm.put("ImageURL",dp);
+                hm.put("qId",timespan);
+                hm.put("qTitle",title.getText().toString());
+                hm.put("qDescription",description.getText().toString());
+                hm.put("qImage","noImage");
+                hm.put("qTime",timespan);
+
+                ref1=FirebaseDatabase.getInstance().getReference("Query");
+                ref1.child(timespan).setValue(hm).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        Toast.makeText(post.this,"Query Published",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(post.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
         }
     }
 public void imagefrom(){

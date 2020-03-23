@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:text="Profile"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="125dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/profilesign"
+        android:layout_below="@+id/textView2"
+        />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Your Name"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView7"
+        android:layout_alignLeft="@+id/textView7"
+        android:text="XYZ"
+        android:textColor="@color/white" />
+
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/textView15"
+        android:background="?android:attr/listDivider"
+        />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView11"
+        android:layout_alignLeft="@id/textView11"
+        android:text="xyz@gmail.com"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="49dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="19dp"
+        android:layout_below="@+id/divider3"
+        android:layout_toEndOf="@+id/textView11"
+        android:layout_toRightOf="@+id/textView11"
+        app:srcCompat="@android:drawable/ic_menu_edit"  />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/textView16"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Password"
+
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="49dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/divider4"
+        android:layout_toEndOf="@+id/textView12"
+        android:layout_toRightOf="@+id/textView12"
+        app:srcCompat="@android:drawable/ic_menu_edit"  />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/textView12"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Department"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView13"
+        android:layout_alignLeft="@id/textView13"
+        android:text="Dept"
+        android:textColor="@color/white" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/textView18"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/type"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView14"
+        android:layout_alignLeft="@id/textView14"
+        android:text="stu/tec"
+        android:textColor="@color/white" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/textView19"
+        android:background="?android:attr/listDivider" />
+
+    <include layout="@layout/botnav"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        />
+
+</RelativeLayout>

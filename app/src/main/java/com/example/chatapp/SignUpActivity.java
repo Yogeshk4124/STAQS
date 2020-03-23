@@ -29,12 +29,16 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.chatapp.Post.post;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.HashMap;
@@ -45,7 +49,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     FirebaseAuth auth;
     DatabaseReference reference;
     Spinner s;
-    String dept;
+    static String dept;
     ProgressDialog pd;
     ImageView camera;
     Uri images_uri=null;
@@ -67,10 +71,10 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         sign_up=findViewById(R.id.button);
         pd=new ProgressDialog(this);
         s=findViewById(R.id.spinner);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(SignUpActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.department));
+        final ArrayAdapter<CharSequence> myAdapter = ArrayAdapter.createFromResource(this,R.array.department,android.R.layout.simple_spinner_item);
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(myAdapter);
+        s.setOnItemSelectedListener(this);
         auth=FirebaseAuth.getInstance();
         sign_up.setOnClickListener(new View.OnClickListener(){
            public void onClick(View view)
@@ -78,15 +82,17 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             String text_username=Username.getText().toString();
             String text_email=Email.getText().toString();
             String text_password=Password.getText().toString();
+
             Toast.makeText(SignUpActivity.this,"Dept "+dept,Toast.LENGTH_LONG).show();
             String tt="Student";
-            if(TextUtils.isEmpty(text_username)||TextUtils.isEmpty(text_email)||images_uri==null||TextUtils.isEmpty(text_password)){
+            if(TextUtils.isEmpty(text_username)||TextUtils.isEmpty(text_email)||dept==null||images_uri==null||TextUtils.isEmpty(text_password)){
                 Toast.makeText(SignUpActivity.this,"All fields are required",Toast.LENGTH_SHORT).show();
                }
             else if(text_password.length()<6)Toast.makeText(SignUpActivity.this,"Password length is less than 6",Toast.LENGTH_SHORT).show();
             else signup(text_username,text_email,text_password,tt);
            }
         });
+
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,45 +164,68 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     }
     private void signup(final String User,final String email,final String pass,final String type)
     {
-            auth.createUserWithEmailAndPassword(email,pass)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>(){
-                        public void onComplete(Task<AuthResult> task){
-                            if(task.isSuccessful()){
-                             FirebaseUser firebaseUser=auth.getCurrentUser();
-                             assert firebaseUser!=null;
-                             String userid=firebaseUser.getUid();
+        pd.setMessage("Creating....");
+        pd.show();
+        final String timespan=String.valueOf(System.currentTimeMillis());
+        String address="Profile/"+"profile_"+timespan;
 
-                             reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        StorageReference ref= FirebaseStorage.getInstance().getReference().child(address);
+        ref.putFile(Uri.parse(images_uri.toString())).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Task<Uri> uriTask= taskSnapshot.getStorage().getDownloadUrl();
+                while(!uriTask.isSuccessful());
+                final String Downloaduri=uriTask.getResult().toString();
+//                    Toast.makeText(post.this,"dassssssssssssssssssssssss",Toast.LENGTH_LONG).show();
+                if(uriTask.isSuccessful())
+                {
+                    auth.createUserWithEmailAndPassword(email,pass)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+                                public void onComplete(Task<AuthResult> task){
+                                    if(task.isSuccessful()){
+                                        FirebaseUser firebaseUser=auth.getCurrentUser();
+                                        assert firebaseUser!=null;
+                                        String userid=firebaseUser.getUid();
 
-                              HashMap<String,String> hashMap=new HashMap<>();
-                                 hashMap.put("id",userid);
-                                 hashMap.put("username",User);
-                                 hashMap.put("email",email);
-                                 hashMap.put("password",pass);
-                                 hashMap.put("Type",type);
-                                 hashMap.put("Department",dept);
+                                        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
-                                hashMap.put("ImageURL",images_uri.toString());
+                                        HashMap<String,String> hashMap=new HashMap<>();
+                                        hashMap.put("id",userid);
+                                        hashMap.put("username",User);
+                                        hashMap.put("email",email);
+                                        hashMap.put("password",pass);
+                                        hashMap.put("Type",type);
+                                        hashMap.put("Department",dept);
+                                        hashMap.put("ImageURL",Downloaduri);
 
-                                reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                        Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(intent);
-                                        finish();
-                                        }
+                                        reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+                                                    pd.dismiss();
+                                                    Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                                else{
+                                                    pd.dismiss();
+                                                    Toast.makeText(SignUpActivity.this,"failed to create",Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
                                     }
-                                });
-                                 }
-                                        else{
-                                            Toast.makeText(SignUpActivity.this,"You can't register with this email or password",Toast.LENGTH_SHORT).show();
-                                        }
-                            }
+                                    else{
+                                        pd.dismiss();
+                                        Toast.makeText(SignUpActivity.this,"You can't register with this email or password",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
 
-                    });
-                    }
+                            });
+                }
+            }
+        });
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

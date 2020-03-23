@@ -12,14 +12,16 @@
             android:id="@+id/bott"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#6200EE"
+            android:background="@color/colorPrimaryDark"
             >
+    <!--            android:background="#6200EE"-->
+
 
             <TextView
                 android:id="@+id/head"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/amaranth"
+                android:fontFamily="serif"
                 android:text="@string/Sign_In"
                 android:textColor="#FFFFFF"
                 android:textSize="45sp" />
