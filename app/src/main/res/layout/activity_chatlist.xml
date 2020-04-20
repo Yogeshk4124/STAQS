@@ -8,9 +8,11 @@
     android:background="@color/colorPrimaryDark"
     >
 
+
     <include layout="@layout/bar_layout"
         android:id="@+id/toolbar"
         />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/toolbar"

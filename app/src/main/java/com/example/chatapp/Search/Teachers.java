@@ -1,21 +1,29 @@
 package com.example.chatapp.Search;
 
 public class Teachers {
-    String T_uid, Subject, image, name;
+    String T_uid, Subject, ImageURL, username,Type;
 
     public Teachers() {
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public String getT_uid() {
         return T_uid;
     }
 
-    public String getname() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setname(String n) {
-        this.name = n;
+    public void setUsername(String n) {
+        this.username = n;
     }
 
 
@@ -31,11 +39,11 @@ public class Teachers {
         this.T_uid = t_uid;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageURL() {
+        return ImageURL;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageURL(String imageURL) {
+        ImageURL = imageURL;
     }
 }

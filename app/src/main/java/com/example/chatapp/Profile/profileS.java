@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.text.InputType;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.chatapp.MainActivity;
 import com.example.chatapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +39,30 @@ public class profileS extends AppCompatActivity {
     FirebaseAuth fa;
     TextView uname,uemail,Dept,type;
     ImageView im,edit1,edit2;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.topmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent intent=new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.about:
+                Toast.makeText(this,"about",Toast.LENGTH_LONG).show();
+                break;
+            default:return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     protected void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();

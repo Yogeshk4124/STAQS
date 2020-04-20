@@ -3,18 +3,22 @@ package com.example.chatapp.Home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapp.MainActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.Search.MyViewHolder;
 import com.example.chatapp.Search.Teachers;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -27,12 +31,39 @@ public class Home extends AppCompatActivity {
     String im,email;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.topmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent(this, MainActivity.class));
+            break;
+            case R.id.about:Toast.makeText(this,"About",Toast.LENGTH_LONG).show();
+            break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         String m="Type",m2="image";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        h=findViewById(R.id.head);
-        h.setText("Home");
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+       // h=findViewById(R.id.head);
+       // h.setText("Home");
         Intent intent = getIntent();
         String s=intent.getStringExtra(m);
         im=intent.getStringExtra(m2);

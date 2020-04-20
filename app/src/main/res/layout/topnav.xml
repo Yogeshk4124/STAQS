@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/topnav"
+<androidx.appcompat.widget.Toolbar android:id="@+id/bott"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:background="@color/dark_grey"
-    android:orientation="vertical">
-
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/bott"
-            android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <!--            android:background="#6200EE"-->
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="?attr/actionModeCloseDrawable"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="150dp" />
+        <TextView
+            android:id="@+id/head"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            >
-    <!--            android:background="#6200EE"-->
-
-
-            <TextView
-                android:id="@+id/head"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="serif"
-                android:text="@string/Sign_In"
-                android:textColor="#FFFFFF"
-                android:textSize="45sp" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-</RelativeLayout>
+            android:fontFamily="serif"
+            android:layout_marginLeft="40dp"
+            android:layout_toStartOf="@+id/option"
+            android:text="@string/Sign_In"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp" />
+   <!--     <ImageView
+            android:id="@+id/option"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/menu"
+            android:layout_marginStart="120dp"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="150dp"
+            />-->
+    </androidx.appcompat.widget.Toolbar>

@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,8 +24,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.chatapp.Home.Home;
+import com.example.chatapp.MainActivity;
 import com.example.chatapp.R;
 import com.example.chatapp.Search.Teachers;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,12 +64,39 @@ public class post extends AppCompatActivity {
     EditText title, description;
     FirebaseAuth firebaseAuth;
     DatabaseReference drf,ref1;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.topmenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                Intent intent=new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.about:
+                Toast.makeText(this,"about",Toast.LENGTH_LONG).show();
+                break;
+            default:return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     protected void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_activity);
-        h = findViewById(R.id.head);
-        h.setText("Post");
+//        h = findViewById(R.id.head);
+//        h.setText("Post");
         setupBottomNavigationView();
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Post");
         camera = findViewById(R.id.imageView6);
         title=findViewById(R.id.editText3);
         description=findViewById(R.id.editText2);

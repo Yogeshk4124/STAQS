@@ -13,7 +13,11 @@
             android:id="@+id/R1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <include layout="@layout/topnav" />
+
+            <include layout="@layout/bar_layout"
+                android:id="@+id/toolbar"
+                />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -21,13 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/AddPost"
-                android:textSize="40sp" />
 
             <EditText
                 android:id="@+id/editText3"
@@ -40,10 +37,13 @@
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="match_parent"
+                android:layout_width="294dp"
                 android:layout_height="268dp"
                 android:layout_below="@+id/editText3"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal" />
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                app:srcCompat="@drawable/screenshot" />
 
             <EditText
                 android:id="@+id/editText2"

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 
-import com.example.chatapp.Chat.ChatA;
+import com.example.chatapp.Chat.ChatlistActivity;
 import com.example.chatapp.Home.Home;
 import com.example.chatapp.R;
 import com.example.chatapp.Post.post;
@@ -47,7 +47,7 @@ public class BotNavHelper {
                         context.startActivity(intent3);
                         break;
                     case R.id.chat:
-                        Intent intent4=new Intent(context, ChatA.class);
+                        Intent intent4=new Intent(context, ChatlistActivity.class);
                         intent4.putExtra("image",im);
                         intent4.putExtra("email",email);
                         context.startActivity(intent4);
