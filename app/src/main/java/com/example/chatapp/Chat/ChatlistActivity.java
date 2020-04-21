@@ -31,6 +31,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.util.ArrayList;
+
 import util.BotNavHelper;
 
 public class ChatlistActivity extends AppCompatActivity {
@@ -39,7 +41,7 @@ public class ChatlistActivity extends AppCompatActivity {
     ChatviewHolder hl;
     DatabaseReference dref;
     RecyclerView homerv;
-
+    ArrayList<Chat> a=new ArrayList<Chat>();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
@@ -79,20 +81,36 @@ public class ChatlistActivity extends AppCompatActivity {
         homerv=findViewById(R.id.homerv);
         homerv.setHasFixedSize(true);
         homerv.setLayoutManager(new LinearLayoutManager(this));
-        Query Q=FirebaseDatabase.getInstance().getReference("Chats").orderByChild("sender").equalTo(senderid);
+//        Query Q=FirebaseDatabase.getInstance().getReference("Chats").orderByChild("senderid").equalTo(senderid);
+//
+//        FirebaseRecyclerAdapter<Chat, ChatviewHolder> FRA=
+//                        new FirebaseRecyclerAdapter<Chat, ChatviewHolder>(
+//                                Chat.class,
+//                                R.layout.teacher_listview,
+//                                ChatviewHolder.class,
+//                                Q){
+//                            @Override
+//                            protected void populateViewHolder(ChatviewHolder myViewHolder, Chat model, int i) {
+//                                myViewHolder.display(getApplicationContext(),model.getReceivername(),model.getSendername(),model.getReceiverimg());
+//                            }
+//                        };
+//                homerv.setAdapter(FRA);
 
+//        Query Q=FirebaseDatabase.getInstance().getReference("Chatlist").child(senderid).orderByChild("id").equalTo(senderid);
+        Query Q=FirebaseDatabase.getInstance().getReference("Chatlist").child(senderid).orderByChild("id").equalTo(fa.getUid());
         FirebaseRecyclerAdapter<Chat, ChatviewHolder> FRA=
-                        new FirebaseRecyclerAdapter<Chat, ChatviewHolder>(
-                                Chat.class,
-                                R.layout.teacher_listview,
-                                ChatviewHolder.class,
-                                Q){
-                            @Override
-                            protected void populateViewHolder(ChatviewHolder myViewHolder, Chat model, int i) {
-                            myViewHolder.display(getApplicationContext(),model.getReceiver(),model.getSender(),model.getReceiverimg());
-                            }
-                        };
-                homerv.setAdapter(FRA);
+                new FirebaseRecyclerAdapter<Chat, ChatviewHolder>(
+                        Chat.class,
+                        R.layout.teacher_listview,
+                        ChatviewHolder.class,
+                        Q){
+                    @Override
+                    protected void populateViewHolder(ChatviewHolder myViewHolder, Chat model, int i) {
+                        myViewHolder.display(getApplicationContext(),model.getReceivername(),model.getSendername(),model.getReceiverimg(),model.getReceiverid(),model.getSendername());
+                        Toast.makeText(ChatlistActivity.this,"username"+model.getReceiverimg(),Toast.LENGTH_LONG).show();
+                    }
+                };
+        homerv.setAdapter(FRA);
 
 //        hl.setOnItemClickListener(new ChatviewHolder.OnItemClickListener() {
 //            @Override

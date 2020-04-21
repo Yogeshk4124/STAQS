@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,7 +48,7 @@ public class ChatviewHolder extends RecyclerView.ViewHolder {
 //        });
     }
 
-    public void display(final Context c, String S, String r,final String M) {
+    public void display(final Context c, final String S, final String r, final String M, final String rid, final String sname) {
         final RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) itemView.getTag();
         int position = viewHolder.getAdapterPosition();
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -55,18 +56,38 @@ public class ChatviewHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 View v=viewHolder.itemView;
                 TextView r=v.findViewById(R.id.textView3);
-                Intent intent=new Intent(c, Message.class);
-                intent.putExtra("receive",r.getText());
+                Intent intent=new Intent(c, MessageActivity.class);
+                intent.putExtra("rid",rid);
+                intent.putExtra("rname",sname);
                 intent.putExtra("receiveimg",M);
+                intent.putExtra("sname",S);
                 c.startActivity(intent);
             }
         });
 // viewHolder.getItemId();
 // viewHolder.getItemViewType();
 // viewHolder.itemView;
+//        Query q= FirebaseDatabase.getInstance().getReference("Users");
+//        q.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(Objects.equals(dataSnapshot.child("id").getValue(String.class), r))
+//                {
+//                    name.setText(dataSnapshot.child("username").getValue(String.class));
+//                    Toast.makeText(c,dataSnapshot.child("username").getValue(String.class),Toast.LENGTH_LONG);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
         name = (itemView.findViewById(R.id.textView4));
         description = ( itemView.findViewById(R.id.textView3));
         im=itemView.findViewById(R.id.imageView);
+        Toast.makeText(c,"username"+r,Toast.LENGTH_LONG).show();
+
         name.setText(r);
         description.setText(S);
         Picasso.get().load(M).into(im);

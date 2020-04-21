@@ -51,7 +51,7 @@
         <activity android:name=".Post.post" />
         <activity android:name=".Profile.profileS" />
         <activity android:name=".Search.searchA" />
-        <activity android:name=".Chat.Message" />
+        <activity android:name=".Chat.MessageActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

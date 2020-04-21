@@ -1,52 +1,71 @@
 package com.example.chatapp.Chat;
 
 public class Chat {
-    String sender;
-    String receiver;
+    String senderid;
+    String receiverid;
     String msg;
     String receiverimg;
+    String sendername;
+    String receivername;
+    String id;
+    String name;
 
-    public Chat(String s,String r,String msg,String receiverimg){
-        this.sender=s;
-        this.receiver=r;
-        this.msg=msg;
-        this.receiverimg=receiverimg;
-    }
-    public Chat(){
-
-    }
-    public String getReceiverimg() {
-        return receiverimg;
+    public String getName() {
+        return name;
     }
 
-    public void setReceiverimg(String receiverimg) {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Chat(String s, String r, String msg, String receiverimg, String sendername, String receivername) {
+        this.senderid = s;
+        this.receiverid = r;
+        this.msg = msg;
         this.receiverimg = receiverimg;
+        this.sendername = sendername;
+        this.receivername = receivername;
     }
 
-    public String getSenderimg() {
-        return senderimg;
+    //    public Chat(String s, String r,String sendername,String receivername){
+//        this.senderid=s;
+//        this.receiverid=r;
+//        this.sendername=sendername;
+//        this.receivername=receivername;
+//    }
+//    public Chat(String s, String r, String msg, String receiverimg,String sendername,String receivername,String id){
+//        this.senderid=s;
+//        this.receiverid=r;
+//        this.msg=msg;
+//        this.receiverimg=receiverimg;
+//        this.sendername=sendername;
+//        this.receivername=receivername;
+//    }
+    public Chat() {
     }
 
-    public void setSenderimg(String senderimg) {
-        this.senderimg = senderimg;
+    public String getSenderid() {
+        return senderid;
     }
 
-    String senderimg;
-
-    public String getSender() {
-        return sender;
+    public void setSenderid(String senderid) {
+        this.senderid = senderid;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public String getId() {
+        return id;
     }
 
-    public String getReceiver() {
-        return receiver;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
+    public String getReceiverid() {
+        return receiverid;
+    }
+
+    public void setReceiverid(String receiverid) {
+        this.receiverid = receiverid;
     }
 
     public String getMsg() {
@@ -55,5 +74,29 @@ public class Chat {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getReceiverimg() {
+        return receiverimg;
+    }
+
+    public void setReceiverimg(String receiverimg) {
+        this.receiverimg = receiverimg;
+    }
+
+    public String getSendername() {
+        return sendername;
+    }
+
+    public void setSendername(String sendername) {
+        this.sendername = sendername;
+    }
+
+    public String getReceivername() {
+        return receivername;
+    }
+
+    public void setReceivername(String receivername) {
+        this.receivername = receivername;
     }
 }
