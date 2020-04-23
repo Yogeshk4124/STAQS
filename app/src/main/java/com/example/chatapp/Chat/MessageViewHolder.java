@@ -86,7 +86,7 @@ public class MessageViewHolder extends RecyclerView.Adapter<MessageViewHolder.Vi
                 holder.profile_image.setImageResource(R.mipmap.ic_launcher);
             }
             else {
-                Picasso.get().load(imageurl).into(holder.profile_image);
+                Picasso.get().load(chat.getReceiverimg()).into(holder.profile_image);
             }
         }
         else

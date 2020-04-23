@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -43,7 +44,7 @@ public class MessageActivity extends AppCompatActivity
     EditText msg;
     FirebaseUser fa;
     DatabaseReference dref;
-    String rid,im,email,receiver,receiverimg,rname,sendername;
+    String rid,im,email,receiver,receiverimg,rname,sendername,simg;
     RecyclerView chatview;
     List<Chat> mchat;
     MessageViewHolder messageAdapter;
@@ -57,7 +58,6 @@ public class MessageActivity extends AppCompatActivity
         Intent intent=getIntent();
         receiverimg=intent.getStringExtra("receiveimg");
         rid=intent.getStringExtra("rid");
-        sendername=intent.getStringExtra("sname");
         send=findViewById(R.id.mb);
         rname=intent.getStringExtra("rname");
         setupBottomNavigationView();
@@ -66,68 +66,89 @@ public class MessageActivity extends AppCompatActivity
         linearLayoutManager.setStackFromEnd(true);
         chatview.setLayoutManager(linearLayoutManager);
         fa=FirebaseAuth.getInstance().getCurrentUser();
-//       Query q=FirebaseDatabase.getInstance().getReference("Users").orderByChild("username").equalTo(receiver);
+//        Toast.makeText(MessageActivity.this,"msg:"+fa.getUid(),Toast.LENGTH_LONG).show();
+
+       Query q=FirebaseDatabase.getInstance().getReference("Users").orderByChild("id").equalTo(fa.getUid());
 //        Query q=FirebaseDatabase.getInstance().getReference("Users").orderByChild("username");
-//          q.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-////            uname=dataSnapshot.child(fa.getUid()).child("username").getValue(String.class);
-////            im=dataSnapshot.child(fa.getUid()).child("ImageURL").getValue(String.class);
-//
-//                rid=dataSnapshot.child("id").getValue(String.class);
-//                im=dataSnapshot.child(receiver).child("ImageURL").getValue(String.class);
-//                sendername=dataSnapshot.child(fa.getUid()).child("username").getValue(String.class);
-//                Toast.makeText(Message.this,"here :"+rid,Toast.LENGTH_LONG).show();
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//            }
-//        });
+          q.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//            uname=dataSnapshot.child(fa.getUid()).child("username").getValue(String.class);
+//            im=dataSnapshot.child(fa.getUid()).child("ImageURL").getValue(String.class);
+
+
+                simg=dataSnapshot.child(fa.getUid()).child("ImageURL").getValue(String.class);
+                sendername=dataSnapshot.child(fa.getUid()).child("username").getValue(String.class);
+                Toast.makeText(MessageActivity.this,"here :"+simg,Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 //        display();
         Picasso.get().load(receiverimg).into(civ);
-        username.setText(sendername);
-        Toast.makeText(MessageActivity.this,"here :"+rid,Toast.LENGTH_LONG).show();
+        username.setText(rname);
+      //  Toast.makeText(MessageActivity.this,"here :"+rid,Toast.LENGTH_LONG).show();
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
+//                .child(fa.getUid())
+//                .child(rid);
+//
+//        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (!dataSnapshot.exists()){
+//                    chatRef.child("receiverid").setValue(rid);
+//                    chatRef.child("id").setValue(fa.getUid());
+//                    chatRef.child("senderid").setValue(fa.getUid());
+//                    chatRef.child("sendername").setValue(sendername);
+//                    chatRef.child("receivername").setValue(rname);
+//                    chatRef.child("receiverimg").setValue(receiverimg);
+//                    chatRef.child("name").setValue(rid);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//                final DatabaseReference chatRef2 = FirebaseDatabase.getInstance().getReference("Chatlist")
+//                        .child(rid)
+//                        .child(fa.getUid());
+//
+//                chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        if (!dataSnapshot.exists()){
+//                            chatRef2.child("receiverid").setValue(rid);
+//                            chatRef2.child("id").setValue(rid);
+//                            chatRef2.child("senderid").setValue(fa.getUid());
+//                            chatRef2.child("sendername").setValue(sendername);
+//                            chatRef2.child("receivername").setValue(rname);
+//                            chatRef2.child("receiverimg").setValue(receiverimg);
+//                            chatRef2.child("name").setValue(fa.getUid());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
                 final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
-                .child(fa.getUid())
-                .child(rid);
-
-        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.exists()){
-                    chatRef.child("receiverid").setValue(rid);
-                    chatRef.child("id").setValue(fa.getUid());
-                    chatRef.child("senderid").setValue(fa.getUid());
-                    chatRef.child("sendername").setValue(sendername);
-                    chatRef.child("receivername").setValue(rname);
-                    chatRef.child("receiverimg").setValue(receiverimg);
-                    chatRef.child("name").setValue(rid);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-                final DatabaseReference chatRef2 = FirebaseDatabase.getInstance().getReference("Chatlist")
-                        .child(rid)
-                        .child(fa.getUid());
+                        .child(fa.getUid())
+                        .child(rid);
 
                 chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (!dataSnapshot.exists()){
-                            chatRef2.child("receiverid").setValue(rid);
-                            chatRef2.child("id").setValue(rid);
-                            chatRef2.child("senderid").setValue(fa.getUid());
-                            chatRef2.child("sendername").setValue(sendername);
-                            chatRef2.child("receivername").setValue(rname);
-                            chatRef2.child("receiverimg").setValue(receiverimg);
-                            chatRef2.child("name").setValue(fa.getUid());
+                            chatRef.child("id").setValue(rid);
+                            chatRef.child("img").setValue(receiverimg);
+                            chatRef.child("username").setValue(rname);
                         }
                     }
 
@@ -136,12 +157,32 @@ public class MessageActivity extends AppCompatActivity
 
                     }
                 });
+                final DatabaseReference chatRef2 = FirebaseDatabase.getInstance().getReference("Chatlist")
+                        .child(rid)
+                        .child(fa.getUid());
+
+                chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()){
+                            chatRef2.child("id").setValue(fa.getUid());
+                            chatRef2.child("img").setValue(simg);
+                            chatRef2.child("username").setValue(sendername);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 dref=FirebaseDatabase.getInstance().getReference("Chats");
                 HashMap<String,Object>hm=new HashMap<>();
                 hm.put("senderid",fa.getUid().toString());
                 hm.put("receiverid",rid);
                 hm.put("msg",msg.getText().toString());
-                hm.put("receiverimg",receiverimg);
+                hm.put("receiverimg",simg);
                 hm.put("receivername",rname);
                 hm.put("sendername",sendername);
                 msg.setText("");

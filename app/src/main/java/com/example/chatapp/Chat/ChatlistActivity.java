@@ -97,18 +97,24 @@ public class ChatlistActivity extends AppCompatActivity {
 //                homerv.setAdapter(FRA);
 
 //        Query Q=FirebaseDatabase.getInstance().getReference("Chatlist").child(senderid).orderByChild("id").equalTo(senderid);
-        Query Q=FirebaseDatabase.getInstance().getReference("Chatlist").child(senderid).orderByChild("id").equalTo(fa.getUid());
-        FirebaseRecyclerAdapter<Chat, ChatviewHolder> FRA=
-                new FirebaseRecyclerAdapter<Chat, ChatviewHolder>(
-                        Chat.class,
+        Query Q=FirebaseDatabase.getInstance().getReference("Chatlist").child(senderid).orderByChild("id");
+        FirebaseRecyclerAdapter<chatlist, ChatviewHolder> FRA=
+                new FirebaseRecyclerAdapter<chatlist, ChatviewHolder>(
+                        chatlist.class,
                         R.layout.teacher_listview,
                         ChatviewHolder.class,
                         Q){
                     @Override
-                    protected void populateViewHolder(ChatviewHolder myViewHolder, Chat model, int i) {
-                        myViewHolder.display(getApplicationContext(),model.getReceivername(),model.getSendername(),model.getReceiverimg(),model.getReceiverid(),model.getSendername());
-                        Toast.makeText(ChatlistActivity.this,"username"+model.getReceiverimg(),Toast.LENGTH_LONG).show();
+                    protected void populateViewHolder(ChatviewHolder chatviewHolder, chatlist clist, int i) {
+                        Toast.makeText(ChatlistActivity.this,"this:"+clist.getImg(),Toast.LENGTH_LONG).show();
+                        chatviewHolder.display(getApplicationContext(),clist.getId(),clist.getImg(),clist.getUsername());
                     }
+
+//                    @Override
+//                    protected void populateViewHolder(ChatviewHolder myViewHolder, Chat model, int i) {
+//                        myViewHolder.display(getApplicationContext(),model.getReceivername(),model.getSendername(),model.getReceiverimg(),model.getReceiverid(),model.getSendername());
+//                        Toast.makeText(ChatlistActivity.this,"username"+model.getReceiverimg(),Toast.LENGTH_LONG).show();
+//                    }
                 };
         homerv.setAdapter(FRA);
 

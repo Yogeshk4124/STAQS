@@ -4,27 +4,28 @@
     android:orientation="vertical"
     android:id="@+id/leftmsg"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<com.mikhaellopez.circularimageview.CircularImageView
-    android:id="@+id/luser"
-    android:layout_width="75dp"
-    android:layout_height="75dp"
-    android:src="@drawable/profile"
-    app:civ_border_color="#3f51b5"
-    app:civ_border_width="0dp"
-    app:civ_shadow="true"
-    app:civ_shadow_color="#3f51b5"
-    app:civ_shadow_radius="0dp"
-    />
+    android:layout_height="50dp">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/luser"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:src="@drawable/profile"
+        app:civ_border_color="#3f51b5"
+        app:civ_border_width="0dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#3f51b5"
+        app:civ_shadow_radius="0dp" />
+
     <TextView
         android:id="@+id/lmsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:background="@drawable/msgbgl"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_toEndOf="@+id/luser"
         android:layout_toRightOf="@+id/luser"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/msgbgl"
         android:padding="8dp"
-        />
+        android:text="TextView" />
 </RelativeLayout>
